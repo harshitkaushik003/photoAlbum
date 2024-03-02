@@ -1,0 +1,4 @@
+.album-card:hover .icon{
+    transform: translateY(-10px);
+    opacity: 1;
+}

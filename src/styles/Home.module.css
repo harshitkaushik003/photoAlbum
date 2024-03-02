@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Namdhinggo:wght@400;500;600;700;800&display=swap");
+.home {
+  margin-top: 30px;
+}
+.home .heading {
+  color: #A2ABAB;
+  text-align: center;
+  font-family: "Namdhinggo", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+}
+.home .albumCards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}/*# sourceMappingURL=Home.module.css.map */

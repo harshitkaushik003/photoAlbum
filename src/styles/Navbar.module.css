@@ -1,0 +1,31 @@
+.Nav {
+  background-color: #132867;
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+}
+.Nav .navLink {
+  color: white;
+  text-decoration: none;
+}
+.Nav .left {
+  width: 30%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.Nav .left span {
+  font-size: 20px;
+  margin-left: 5px;
+}
+.Nav .right {
+  width: 15%;
+  display: flex;
+  align-items: center;
+}
+.Nav .right span.navItem {
+  flex: 1;
+  cursor: pointer;
+}/*# sourceMappingURL=Navbar.module.css.map */
