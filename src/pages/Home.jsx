@@ -5,12 +5,15 @@ import { albumSelector, getInitialState } from '../redux/reducers';
 import AlbumCard from '../components/AlbumCard';
 const Home = () => {
   const {albums} = useSelector(albumSelector);
-  const albumsSliced = albums.slice(0,20);
+  
   const dispatch = useDispatch();
 
   useEffect(()=>{
+    console.log("home mounted");
     dispatch(getInitialState());
-  }, [albumSelector]);
+  }, []);
+
+
 
   return (
     <div className={styles.home}>
@@ -18,7 +21,7 @@ const Home = () => {
             <span>All Your Albums at one Place</span>
         </div>
         <div className={styles.albumCards}>
-            {albumsSliced.map(album=>(
+            {albums.map(album=>(
               <AlbumCard album={album}/>
             ))}
         </div>

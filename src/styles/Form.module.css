@@ -23,7 +23,7 @@
   border: none;
   border-bottom: 1px solid white;
 }
-.form input[type=button] {
+.form input[type=submit] {
   background-color: #003566;
   border-radius: 5px;
   height: 30px;
