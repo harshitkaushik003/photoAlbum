@@ -1,16 +1,22 @@
+//importing dependencies 
 import axios from "axios";
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+//initial state
 const initialState = {albums: []};
 
+
+//action to get initial state
 export const getInitialState = createAsyncThunk("album/getAlbums", async (_, thunkApi)=>{
     const state = thunkApi.getState();
+    // if the intial state is already populated no need to fetch 
     if(state.albumReducer.albums.length > 0){
         console.log("returning as it is");
         return state.albumReducer.albums;
     }
     try {
+        //fetching 
         let response = await axios.get("https://jsonplaceholder.typicode.com/albums");     
         return response.data; 
     } catch (error) {
@@ -19,8 +25,10 @@ export const getInitialState = createAsyncThunk("album/getAlbums", async (_, thu
     
 })
 
+//adding a new album
 export const handleAddAlbum = createAsyncThunk("album/addAlbums", async (payload)=>{
     try {
+
         let response = await axios.post("https://jsonplaceholder.typicode.com/albums", {
             title: payload.title,
             userId: payload.userId
@@ -36,6 +44,7 @@ export const handleAddAlbum = createAsyncThunk("album/addAlbums", async (payload
     }
 })
 
+//action to update resource 
 export const updateResource = createAsyncThunk("album/updateAlbum", async (payload)=>{
 
     try {
@@ -48,6 +57,8 @@ export const updateResource = createAsyncThunk("album/updateAlbum", async (paylo
         console.log(response.data);
         return response.data;
     } catch (error) {
+        // error may occur in case the album does not exist in the server because we have added it as a dummy 
+        // in that case return the payload 
         return payload;
         
     }
@@ -55,6 +66,7 @@ export const updateResource = createAsyncThunk("album/updateAlbum", async (paylo
     
 })
 
+//handle delete
 export const deleteResource = createAsyncThunk("album/delete", async (payload)=>{
     try {
         await axios.delete(`https://jsonplaceholder.typicode.com/albums/${payload.id}`);
