@@ -37,6 +37,7 @@ export const handleAddAlbum = createAsyncThunk("album/addAlbums", async (payload
 })
 
 export const updateResource = createAsyncThunk("album/updateAlbum", async (payload)=>{
+
     try {
         
         let response = await axios.put(`https://jsonplaceholder.typicode.com/albums/${payload.id}`, {
@@ -47,9 +48,11 @@ export const updateResource = createAsyncThunk("album/updateAlbum", async (paylo
         console.log(response.data);
         return response.data;
     } catch (error) {
-        console.log(`Error ${error}`);
         return payload;
+        
     }
+
+    
 })
 
 export const deleteResource = createAsyncThunk("album/delete", async (payload)=>{
@@ -80,11 +83,15 @@ const albumSlice = createSlice({
         .addCase(updateResource.fulfilled, (state, action)=>{
             
             console.log(action.payload);
-            const index = state.albums.findIndex(album => album.id === parseInt(action.payload.id)  );
+            const index = state.albums.findIndex(album => album.id === parseInt(action.payload.id));
+            console.log(index);
             if(index === -1){
                 console.log("400 not found");
             }else{
+                
                 state.albums[index] = action.payload;
+                console.log("Array updated ");
+                console.log(action.payload);
             }
         })
         .addCase(deleteResource.fulfilled, (state, action)=>{

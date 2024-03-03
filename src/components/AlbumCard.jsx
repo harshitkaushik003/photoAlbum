@@ -9,6 +9,8 @@ import { deleteResource } from '../redux/reducers';
 const AlbumCard = ({album ,id}) => {
 
     const dispatch = useDispatch();
+
+    // function to dispatch the delete action 
     const handleDelete = ()=>{
         dispatch(deleteResource({id}));
     }
@@ -17,9 +19,10 @@ const AlbumCard = ({album ,id}) => {
       <img src={myImage} alt="" />
       <span>{album.title}</span>
       <Link to={`/update/${id}`}>
+        {/* it will update the album  */}
         <Icon image={"https://cdn-icons-png.flaticon.com/128/8152/8152650.png"} top={140} right={70}/>
       </Link>
-       
+        {/* this icon will delete the album */}
       <Icon image={"https://cdn-icons-png.flaticon.com/128/4442/4442016.png"} top={140} right={23} fn={handleDelete}/>
     </div>
   )
