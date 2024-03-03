@@ -2,3 +2,8 @@
     transform: translateY(-10px);
     opacity: 1;
 }
+
+.navLink{
+    color: white;
+    text-decoration: none;
+}

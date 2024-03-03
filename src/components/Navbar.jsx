@@ -15,7 +15,7 @@ const Navbar = () => {
         
       </div>  
       <div className={styles.right}>
-        <NavLink to={"add-album"} className={styles.navLink}>
+        <NavLink to={"add-album"} className="navLink">
           <span className={styles.navItem}>Add Album</span>
         </NavLink>
         

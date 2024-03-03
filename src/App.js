@@ -6,13 +6,15 @@ import { store } from "./redux/store";
 
 import "./styles/App.css"
 import AddAlbum from "./pages/AddAlbum";
+import UpdateAlbum from "./pages/UpdateAlbum";
 
 
 function App() {
 	const router = createBrowserRouter([
 		{path: '/', element: <Navbar/>, children:[
 			{index: true, element: <Home/>},
-			{path:"add-album", element: <AddAlbum/>}
+			{path:"add-album", element: <AddAlbum/>},
+			{path: 'update/:id', element: <UpdateAlbum/>}
 		]}
 	])
 	return (

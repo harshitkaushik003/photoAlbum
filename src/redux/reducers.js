@@ -35,6 +35,35 @@ export const handleAddAlbum = createAsyncThunk("album/addAlbums", async (payload
         console.log(`Error in adding -> ${error}`);
     }
 })
+
+export const updateResource = createAsyncThunk("album/updateAlbum", async (payload)=>{
+    try {
+        
+        let response = await axios.put(`https://jsonplaceholder.typicode.com/albums/${payload.id}`, {
+            title: payload.title,
+            userId: payload.userId
+        });
+
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.log(`Error ${error}`);
+        return payload;
+    }
+})
+
+export const deleteResource = createAsyncThunk("album/delete", async (payload)=>{
+    try {
+        await axios.delete(`https://jsonplaceholder.typicode.com/albums/${payload.id}`);
+        console.log(payload.id);
+        return payload.id
+
+    } catch (error) {
+        console.log(`Delete: ${error}`);
+        return payload.id;
+    }
+})
+
 const albumSlice = createSlice({
     name: "album",
     initialState: initialState,
@@ -48,6 +77,21 @@ const albumSlice = createSlice({
             state.albums = [action.payload, ...state.albums]
             console.log(state.albums);
         })
+        .addCase(updateResource.fulfilled, (state, action)=>{
+            
+            console.log(action.payload);
+            const index = state.albums.findIndex(album => album.id === parseInt(action.payload.id)  );
+            if(index === -1){
+                console.log("400 not found");
+            }else{
+                state.albums[index] = action.payload;
+            }
+        })
+        .addCase(deleteResource.fulfilled, (state, action)=>{
+            let filteredArray = state.albums.filter(item=> item.id === action.payload);
+            state.albums.splice(filteredArray, 1);
+        })
+        
     }
 });
 

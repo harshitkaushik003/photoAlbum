@@ -22,7 +22,7 @@ const Home = () => {
         </div>
         <div className={styles.albumCards}>
             {albums.map(album=>(
-              <AlbumCard album={album}/>
+              <AlbumCard album={album} key={album.id} id={album.id}/>
             ))}
         </div>
     </div>
